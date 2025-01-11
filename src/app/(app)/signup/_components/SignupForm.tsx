@@ -88,7 +88,7 @@ export default function SignupForm(): ReactElement {
 
         <p className="mt-4 text-center text-sm text-gray-400">
           Already have an account?{' '}
-          <Link href="/signin" className="font-semibold text-headBlue-500 hover:text-headBlue-400">
+          <Link href="/login" className="font-semibold text-headBlue-500 hover:text-headBlue-400">
             Sign In
           </Link>
         </p>

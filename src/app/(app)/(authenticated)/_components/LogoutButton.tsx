@@ -29,15 +29,15 @@ export default function LogoutButton() {
   }
 
   return (
-    <div>
+    <>
       {error && <p className="text-red-500">{error}</p>}
       <button
         onClick={handleLogout}
         disabled={isPending}
-        className="px-4 py-2 bg-red-500 text-white rounded"
+        className="text-white rounded"
       >
         {isPending ? "Logging out..." : <AiOutlineLogout size={24} />}
       </button>
-    </div>
+    </>
   );
 }
