@@ -15,6 +15,8 @@ export interface Config {
     users: User;
     media: Media;
     customers: Customer;
+    courses: Course;
+    participation: Participation;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -24,6 +26,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
+    participation: ParticipationSelect<false> | ParticipationSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -124,6 +128,7 @@ export interface Media {
  */
 export interface Customer {
   id: string;
+  participation?: (string | Course)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -134,6 +139,55 @@ export interface Customer {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  image: string | Media;
+  curriculum: (
+    | {
+        title: string;
+        questions: {
+          question: string;
+          answers: {
+            answer: string;
+            true?: boolean | null;
+            id?: string | null;
+          }[];
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'quiz';
+      }
+    | {
+        title: string;
+        duration: number;
+        playerURL: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'video';
+      }
+  )[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "participation".
+ */
+export interface Participation {
+  id: string;
+  customer: string | Customer;
+  course: string | Course;
+  progress?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -153,6 +207,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'customers';
         value: string | Customer;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: string | Course;
+      } | null)
+    | ({
+        relationTo: 'participation';
+        value: string | Participation;
       } | null);
   globalSlug?: string | null;
   user:
@@ -244,6 +306,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "customers_select".
  */
 export interface CustomersSelect<T extends boolean = true> {
+  participation?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -253,6 +316,61 @@ export interface CustomersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses_select".
+ */
+export interface CoursesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  curriculum?:
+    | T
+    | {
+        quiz?:
+          | T
+          | {
+              title?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    answers?:
+                      | T
+                      | {
+                          answer?: T;
+                          true?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              playerURL?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "participation_select".
+ */
+export interface ParticipationSelect<T extends boolean = true> {
+  customer?: T;
+  course?: T;
+  progress?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

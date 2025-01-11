@@ -10,6 +10,12 @@ export const Customers: CollectionConfig = {
 	},
   auth: true,
   fields: [
-    
+    {
+      name: "participation",
+      label: "Participation",
+      type: "relationship",
+      relationTo: "courses",
+      hasMany: true,
+    }
   ]
 }

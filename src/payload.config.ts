@@ -13,6 +13,8 @@ import { Media } from './collections/Media'
 import { s3Storage } from '@payloadcms/storage-s3'
 import brevoAdapter from './utils/brevoAdapter'
 import { Customers } from './collections/Customers'
+import { Courses } from './collections/Courses/Courses'
+import { Participation } from './collections/Courses/Participation'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,7 +27,7 @@ export default buildConfig({
     },
   },
   email: brevoAdapter(),
-  collections: [Users, Media, Customers],
+  collections: [Users, Media, Customers, Courses, Participation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
