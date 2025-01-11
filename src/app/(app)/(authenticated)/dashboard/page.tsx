@@ -1,5 +1,5 @@
 import React from "react";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "../_components/LogoutButton";
 
 const page = () => {
   return <div>Dashboard

@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import React, { FormEvent, ReactElement, useState } from "react";
-import SubmitButton from "../../components/SubmitButton";
-import { login, LoginResponse } from "../actions/login";
+import SubmitButton from "../../_components/SubmitButton";
+import { login, LoginResponse } from "../_actions/login";
 import Link from "next/link";
 
 export default function LoginForm(): ReactElement {

@@ -2,7 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { logout } from "../actions/logout";
+import { logout } from "../_actions/logout";
+import { AiOutlineLogout } from 'react-icons/ai';
+
 
 export default function LogoutButton() {
   const [isPending, setIsPending] = useState(false);
@@ -34,7 +36,7 @@ export default function LogoutButton() {
         disabled={isPending}
         className="px-4 py-2 bg-red-500 text-white rounded"
       >
-        {isPending ? "Logging out..." : "Logout"}
+        {isPending ? "Logging out..." : <AiOutlineLogout size={24} />}
       </button>
     </div>
   );
