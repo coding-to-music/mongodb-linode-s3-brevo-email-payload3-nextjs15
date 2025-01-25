@@ -7,15 +7,15 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = async ({ children }) => {
+const Template: FC<LayoutProps> = async ({ children }) => {
   const user = await getUser();
   if (!user) {
     redirect('/login');
     return null;
   }
   return <div>
-    <Navbar/>
-  {children}</div>;
+    <Navbar />
+    {children}</div>;
 }
 
-export default Layout;
+export default Template;
