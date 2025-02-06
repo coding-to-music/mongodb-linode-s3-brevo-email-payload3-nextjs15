@@ -73,24 +73,32 @@ Before running this project, make sure you have the following installed:
 
 ### MongoDB Connection
 
+```java
 MONGODB_URI=your_mongodb_connection_string
 PAYLOAD_SECRET=your_secret
+```
 
 ### Linode S3 Configuration
 
+```java
 S3_BUCKET_NAME=your_bucket_name
 S3_ACCESS_KEY=your_access_key
 S3_SECRET_KEY=your_secret_key
 S3_REGION=your_region
 S3_ENDPOINT=https://your_s3_endpoint
+```
 
 ### Brevo Email Configuration
 
+```java
 BREVO_API_KEY=your_brevo_api_key
 BREVO_EMAIL_ACTIVE=true
 BREVO_SENDER_NAME=Your Name
 BREVO_SENDER_EMAIL=info@yourdomain.com
+```
 
 ### Next.js Secret
 
+```java
 NEXT_PUBLIC_SECRET=your_nextjs_secret
+```
